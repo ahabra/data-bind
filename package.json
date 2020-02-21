@@ -3,5 +3,9 @@
     "version": "0.2.0",
     "description": "two-way data binding",
     "license": "Apache",
-    "repository": "ahabra/data-bind"
+    "repository": "ahabra/data-bind",
+    "devDependencies": {
+        "fs-extra": "^8.1.0",
+        "terser": "^4.6.3"
+    }
 }
