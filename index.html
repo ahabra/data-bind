@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <script src="static/binder.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/index.css">
+  </head>
+
+  <body>
+    <h1>Play with Binding</h1>
+    <p>Open Dev's console and inspect the object <code>obj</code></p>
+
+    <input id="inp1" type="text" placeholder="obj.inp1 = 42" />
+    <div class="box" id="divStyle">Bind div's style: <code>obj.divStyle='background-color:red'</code></div>
+    <div class="box" id="divContent">Bind div's content: <code>obj.divContent = 'foo'</code></div>
+    
+    <div>
+      <h4>States</h4>
+      <select id="states">
+        <option value="mi">Michigan</option>
+        <option value="oh">Ohio</option>
+        <option value="ca">California</option>
+      </select>
+    </div>
+    
+    <div>
+      <h4>Countries Lived At (Select all)</h4>
+      <select id="countries" size="5" multiple>
+          <option value="us">USA</option>
+          <option value="ca">Canada</option>
+          <option value="mx">Mexico</option>
+          <option value="fr">France</option>
+          <option value="sy">Syria</option>
+      </select>
+    </div>
+
+    <div>
+      <h4>Language</h4>
+      <input type='radio' name='language' value='a'>Arabic
+      <input type='radio' name='language' value='e' checked>English
+      <input type='radio' name='language' value='f'>French
+    </div>
+
+    <div>
+      <h4>Hobbies</h4>
+      <input type="checkbox" class="hobbies" name="reading" value='r' checked>Reading
+      <input type="checkbox" class="hobbies" name="swimming" value='s'>Swimming
+      <input type="checkbox" class="hobbies" name="traveling">Traveling
+    </div>
+    
+    <script>
+      const obj = {
+        countries: ['mx']
+      };
+      binder({obj, prop:'inp1', sel:'#inp1'});
+      binder({obj, prop:'divStyle', sel:'#divStyle', attr:'style'})
+      binder({obj, prop:'divContent', sel:'#divContent'});
+      binder({obj, prop:'state', sel:'#states'});
+      binder({obj, prop:'countries', sel:'#countries'});
+      binder({obj, prop:'language', sel:'[name="language"]'});
+      binder({obj, prop:'hobbies', sel:'.hobbies'});
+    </script>
+  </body>
+</html>
