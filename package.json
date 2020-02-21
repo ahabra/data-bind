@@ -1,8 +1,7 @@
 {
     "name": "@ahabra/data-bind",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "two-way data binding",
     "license": "Apache",
     "repository": "ahabra/data-bind"
-
 }
