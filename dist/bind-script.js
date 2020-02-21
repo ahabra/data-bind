@@ -1,6 +1,9 @@
+// Two-way data binding library.
+// https://github.com/ahabra/data-bind
+// Copyright 2020 (C) Abdul Habra
+
 (function() {
-        
-function bind({obj, prop, sel, attr}) {
+        function bind({obj, prop, sel, attr}) {
     validateArgs({obj, prop, sel});
     const oldValue = obj.hasOwnProperty(prop) ? obj[prop] : undefined;
 

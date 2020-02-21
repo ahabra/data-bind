@@ -1,4 +1,3 @@
-
 export default function bind({obj, prop, sel, attr}) {
     validateArgs({obj, prop, sel});
     const oldValue = obj.hasOwnProperty(prop) ? obj[prop] : undefined;

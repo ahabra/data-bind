@@ -1,3 +1,6 @@
+// Two-way data binding library.
+// https://github.com/ahabra/data-bind
+// Copyright 2020 (C) Abdul Habra
 
 export default function bind({obj, prop, sel, attr}) {
     validateArgs({obj, prop, sel});
