@@ -1,7 +1,7 @@
 <html>
   <head>
-    <script src="static/binder.js"></script>
-    <link rel="stylesheet" type="text/css" href="static/index.css">
+    <script type="module" src="./example.js"></script>
+    <link rel="stylesheet" type="text/css" href="example.css">
   </head>
 
   <body>
@@ -117,17 +117,5 @@
     </table>
   
     
-    <script>
-      const obj = {
-        countries: ['mx']
-      };
-      bind({obj, prop:'age', sel:'#age'});
-      bind({obj, prop:'description', sel:'#description'});
-      bind({obj, prop:'carColor', sel:'#carColor', attr:'style'});
-      bind({obj, prop:'state', sel:'#states'});
-      bind({obj, prop:'countries', sel:'#countries'});
-      bind({obj, prop:'language', sel:'[name="language"]'});
-      bind({obj, prop:'hobbies', sel:'.hobbies'});
-    </script>
   </body>
 </html>
