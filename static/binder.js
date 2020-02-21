@@ -103,7 +103,7 @@
         }
     }
 
-    window.binder = bind;
+    window.bind = bind;
 })();
 
 /*

@@ -6,57 +6,128 @@
 
   <body>
     <h1>Play with Binding</h1>
-    <p>Open Dev's console and inspect the object <code>obj</code></p>
 
-    <input id="inp1" type="text" placeholder="obj.inp1 = 42" />
-    <div class="box" id="divStyle">Bind div's style: <code>obj.divStyle='background-color:red'</code></div>
-    <div class="box" id="divContent">Bind div's content: <code>obj.divContent = 'foo'</code></div>
-    
-    <div>
-      <h4>States</h4>
-      <select id="states">
-        <option value="mi">Michigan</option>
-        <option value="oh">Ohio</option>
-        <option value="ca">California</option>
-      </select>
+    <div class="directions">
+      <h4>Directions</h4>
+      <p>Open the browser's Console tab, and enter some of the examples.</p>
+      <p>There is a global object defined named <code>obj</code> which you can inspect or edit.</p>
     </div>
-    
-    <div>
-      <h4>Countries Lived At (Select all)</h4>
-      <select id="countries" size="5" multiple>
-          <option value="us">USA</option>
-          <option value="ca">Canada</option>
-          <option value="mx">Mexico</option>
-          <option value="fr">France</option>
-          <option value="sy">Syria</option>
-      </select>
-    </div>
+    <table>
+      <thead>
+        <tr class="table-title">
+          <th>Bind to ...</th>
+          <th>Bound Element</th>
+          <th>Examples to Try</th>
+        </tr>
+      </thead>
 
-    <div>
-      <h4>Language</h4>
-      <input type='radio' name='language' value='a'>Arabic
-      <input type='radio' name='language' value='e' checked>English
-      <input type='radio' name='language' value='f'>French
-    </div>
+      <tbody>
+        <tr>
+          <td class="bindto"><code>input</code> with type text</td>
+          <td class="element">
+            <div class="title">Age</div>
+            <input id="age" type="text" />
+          </td>
+          <th>obj.age = 42</th>
+        </tr>
 
-    <div>
-      <h4>Hobbies</h4>
-      <input type="checkbox" class="hobbies" name="reading" value='r' checked>Reading
-      <input type="checkbox" class="hobbies" name="swimming" value='s'>Swimming
-      <input type="checkbox" class="hobbies" name="traveling">Traveling
-    </div>
+        <tr class="even">
+          <td class="bindto"><code>div</code>'s content</td>
+          <td class="element">
+            <div class="title">Description</div>
+            <div class="box" id="description">Bind div's content</div>
+          </td>
+          <th>obj.description = 'foo'</th>
+        </tr>
+  
+        <tr>
+          <td class="bindto"><code>div</code> element atteribute</td>
+          <td class="element">
+            <div class="title">Car's Color</div>
+            <div class="box" id="carColor">Bind div's style</div>
+          </td>
+          <th>obj.carColor = 'background-color:red'</th>
+        </tr>
+  
+        <tr class="even">
+          <td class="bindto"><code>select</code> element</td>
+          <td class="element">
+            <div>
+              <div class="title">State</div>
+              <select id="states">
+                <option value="mi">Michigan</option>
+                <option value="oh">Ohio</option>
+                <option value="ca">California</option>
+              </select>
+            </div>
+          </td>
+          <th>obj.state = ['oh']</th>
+        </tr>
+  
+        <tr>
+          <td class="bindto">multi value <code>select</code> element</td>
+          <td class="element">
+            <div>
+              <div class="title">Countries Lived At (Select all)</div>
+              <div>
+                <select id="countries" size="5" multiple>
+                    <option value="us">USA</option>
+                    <option value="ca">Canada</option>
+                    <option value="mx">Mexico</option>
+                    <option value="fr">France</option>
+                    <option value="sy">Syria</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <th>obj.countries = ['fr', 'us']</th>
+        </tr>
+  
+        <tr class="even">
+          <td class="bindto"><code>input</code> with type radio</td>
+          <td class="element">
+            <div>
+              <div class="title">Language</div>
+              <div>
+                <input type='radio' name='language' value='a'>Arabic
+                <input type='radio' name='language' value='e' checked>English
+                <input type='radio' name='language' value='f'>French
+              </div>
+            </div>   
+          </td>
+          <th>obj.language = 'a'</th>
+        </tr>
+  
+        <tr>
+          <td class="bindto"><code>input</code> with type checkbox</td>
+          <td class="element">
+            <div>
+              <div class="title">Hobbies</div>
+              <div>
+                <input type="checkbox" class="hobbies" name="read" value='r' checked>Read
+                <input type="checkbox" class="hobbies" name="swim" value='s'>Swim
+                <input type="checkbox" class="hobbies" name="travel">Travel
+              </div>
+            </div>        
+          </td>
+          <th>obj.hobbies = ['s', 'travel']</th>
+        </tr>
+  
+      </tbody>
+    </table>
+  
     
     <script>
       const obj = {
         countries: ['mx']
       };
-      binder({obj, prop:'inp1', sel:'#inp1'});
-      binder({obj, prop:'divStyle', sel:'#divStyle', attr:'style'})
-      binder({obj, prop:'divContent', sel:'#divContent'});
-      binder({obj, prop:'state', sel:'#states'});
-      binder({obj, prop:'countries', sel:'#countries'});
-      binder({obj, prop:'language', sel:'[name="language"]'});
-      binder({obj, prop:'hobbies', sel:'.hobbies'});
+      bind({obj, prop:'age', sel:'#age'});
+      bind({obj, prop:'description', sel:'#description'});
+      bind({obj, prop:'carColor', sel:'#carColor', attr:'style'});
+      bind({obj, prop:'state', sel:'#states'});
+      bind({obj, prop:'countries', sel:'#countries'});
+      bind({obj, prop:'language', sel:'[name="language"]'});
+      bind({obj, prop:'hobbies', sel:'.hobbies'});
     </script>
   </body>
 </html>

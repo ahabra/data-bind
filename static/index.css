@@ -1,20 +1,95 @@
-h4 {
-  margin: 20px 0 5px 0;
-}
-
-input[type="radio"], input[type="checkbox"] {
-  margin-left: 20px;
-}
-
-div.box {
-  border-style: dashed;
-  border-width: 1px;
-  margin: 10px 0 10px 0;
-  padding: 5px;
-  width: 400px;
-}
-
-code {
-  color:blue;
-}
+body {
+    font-family: Georgia, serif;
+  }
   
+  .directions {
+    margin: 0 0 10px 0;
+    padding: 2px;
+    background-color: #f2fce8;
+    width: 780px;
+  }
+  
+  .directions h4 {
+    margin: 5px 0 10px 0;
+    color: darkgreen;
+  }
+  
+  .directions p {
+    margin: 8px 0 8px 0;
+  }
+  
+  .directions code {
+    font-weight: bold;
+    font-size: larger;
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  div.box {
+    border-style: dashed;
+    border-width: 1px;
+    margin: 5px 0 5px 0;
+    padding: 5px;
+    width: 150px;
+  }
+  
+  input[type="radio"], input[type="checkbox"] {
+    margin-left: 20px;
+  }
+    
+  table {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  
+  tr {
+    height: 40px;
+  }
+  
+  tbody tr.even {
+    background-color: lightgoldenrodyellow;
+  }
+  
+  thead th {
+    background-color: #f7f7bb;
+    font-weight: bold;
+  }
+  
+  tbody td.element {
+    border-left: 1px solid black;
+    width: 280px;
+    vertical-align: top;
+  }
+  
+  tbody th {
+    border-left: 1px solid black;
+    font-weight: normal;
+    font-family: 'Courier New', Courier, monospace;
+    color: blue;
+    text-align: left;
+    font-size: small;
+  }
+  
+  th, td {
+    padding: 5px;
+  }
+  
+  tbody .title {
+    padding-right: 5px;
+    font-weight: bold;
+    color: brown;
+  }
+  
+  tbody div.title {
+    margin: 0 0 3px 0;
+  }
+    
+  tbody td.bindto {
+    width: 180px;
+  }
+  
+  tbody td.bindto code {
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+  }
