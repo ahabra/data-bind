@@ -30,8 +30,9 @@ If you plan to use this package as a JS script library:
 <script src="https://raw.githubusercontent.com/ahabra/data-bind/master/dist/data-bind-script-min.js"></script>
 ```
 
-Alternatively, you can download the git repo `https://github.com/ahabra/data-bind` and
-use the file `dist/data-bind-script-min.js` directly.
+Alternatively, you can download the file 
+`https://github.com/ahabra/data-bind/blob/master/dist/data-bind-script-min.js` 
+and use directly.
 
 ## Usage
 If you installed as an NPM module:
