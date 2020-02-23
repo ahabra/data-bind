@@ -114,6 +114,18 @@
           <th>obj.hobbies = ['s', 'travel']</th>
         </tr>
   
+        <tr class="even">
+          <td class="bindto"><code>textarea</code></td>
+          <td class="element">
+            <div>
+              <div class="title">Pets</div>
+              <div>
+                <textarea id="pets"></textarea>
+              </div>
+            </div>
+          </td>
+          <th>obj.pets = 'dog, cat'</th>
+        </tr>
       </tbody>
     </table>
   
@@ -129,6 +141,7 @@ bind({obj, prop:'state', sel:'#states'});
 bind({obj, prop:'countries', sel:'#countries'});
 bind({obj, prop:'language', sel:'[name="language"]'});
 bind({obj, prop:'hobbies', sel:'.hobbies'});
+bind({obj, prop:'pets', sel:'#pets'});
 
 </script>
 

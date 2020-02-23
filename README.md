@@ -1,8 +1,5 @@
-# Data Binder - NOT READY - DO NOT USE
+# Data Binder
 Simple two-way data binding library for JS.
-
-    Author: Abdul Habra
-    Started: 2020.02.20
 
 
 ## What is Data Binding
@@ -43,7 +40,7 @@ import bind from '@ahabra/data-bind'
 If you installed it as Script, the bind function is available at `window.bind()`
 
 
-## Quick Code Demo
+### Quick Code Demo
 ```html
      <input id="age" type="text" />
 ```
@@ -78,8 +75,8 @@ obj.carColor = 'background-color:red';
 ```
 
 When `attr` is __not__ given:
-* If the selected element is input-type element (`input` or `select`), the value
-    of the element is bound.
+* If the selected element is input-type element (`input`, `textarea`, or `select`), 
+    the value of the element is bound.
 * Otherwise, the `innerHTML` of the element is bound.
 
 Look at this repo's `example/example.html` for a fully working example.
