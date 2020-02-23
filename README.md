@@ -71,6 +71,9 @@ When `attr` is given, the value of the attribute is bound to the property.
 For example, you can bind the style attribute to a property.
 ```js
 bind({obj, prop:'carColor', sel:'#carColor', attr:'style'});
+
+// then you can change the element's background color:
+obj.carColor = 'background-color:red';
 ```
 
 When `attr` is __not__ given:
