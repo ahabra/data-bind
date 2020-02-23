@@ -1,6 +1,6 @@
 {
     "name": "@ahabra/data-bind",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "Easy to use, two-way data binding library, light-weight, and with no dependencies.",
     "license": "Apache",
     "repository": "ahabra/data-bind",
