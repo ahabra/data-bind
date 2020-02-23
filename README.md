@@ -1,5 +1,5 @@
-# Data Binder
-Simple two-way data binding library for JS.
+# Data Bind
+Easy to use, two-way data binding library, light-weight, and with no dependencies.
 
 
 ## What is Data Binding

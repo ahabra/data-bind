@@ -10,9 +10,12 @@
         "bind",
         "two",
         "way",
-        "npm",
-        "package"
+        "data-binding",
+        "two-way"
     ],
+    "scripts": {
+        "build": "node scripts/build.js"
+    },
     "devDependencies": {
         "fs-extra": "^8.1.0",
         "terser": "^4.6.3"
