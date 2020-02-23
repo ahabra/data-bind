@@ -4,6 +4,15 @@
     "description": "two-way data binding",
     "license": "Apache",
     "repository": "ahabra/data-bind",
+    "main": "dist/data-bind-module.js",
+    "keywords": [
+        "data",
+        "bind",
+        "two",
+        "way",
+        "npm",
+        "package"
+    ],
     "devDependencies": {
         "fs-extra": "^8.1.0",
         "terser": "^4.6.3"
