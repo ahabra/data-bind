@@ -65,7 +65,7 @@ object with the following keys:
 3. `sel`: A CSS selector which selects an element on the page. Required, string.
 4. `attr`: The name of an attribute on the selected element. Optional, string.
 5. `root`: The root DOM node which contains the bound element. If ommitted, then
-        `document` will be the root. Optional. DOM Element.
+        `document` will be the root. Optional, DOM Element.
 
 
 When `attr` is given, the value of the attribute is bound to the property.
@@ -90,7 +90,7 @@ The `bind()` function can be called with an optional `root` argument. For exampl
         <input class="name" type="text" />
     </div>
 ```
-We can bind the `name` as follow:
+We can bind the `name` as follows:
 
 ```js
 const obj = {};
