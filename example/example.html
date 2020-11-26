@@ -117,7 +117,7 @@
         <tr class="even">
           <td class="bindto"><code>textarea</code></td>
           <td class="element">
-            <div>
+            <div id="root1">
               <div class="title">Pets</div>
               <div>
                 <textarea id="pets"></textarea>
@@ -141,7 +141,7 @@ bind({obj, prop:'state', sel:'#states'});
 bind({obj, prop:'countries', sel:'#countries'});
 bind({obj, prop:'language', sel:'[name="language"]'});
 bind({obj, prop:'hobbies', sel:'.hobbies'});
-bind({obj, prop:'pets', sel:'#pets'});
+bind({obj, prop:'pets', sel:'#pets', root: document.getElementById('root1')});
 
 </script>
 

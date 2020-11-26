@@ -1,10 +1,11 @@
-export default function bind({obj, prop, sel, attr}) {
+export default function bind({obj, prop, sel, attr, root}) {
     validateArgs({obj, prop, sel});
     const oldValue = obj.hasOwnProperty(prop) ? obj[prop] : undefined;
+    root = root || document;
 
     const descriptor = {
-        get: () => getVal(sel, attr),
-        set: v => setVal(sel, v, attr),
+        get: () => getVal(root, sel, attr),
+        set: v => setVal(root, sel, v, attr),
         configurable: true,
         enumerable: true
     };
@@ -23,8 +24,8 @@ const isSelect = el => el.tagName.toLowerCase() === 'select';
 const isInput = el => 'value' in el;
 const toSet = v => new Set( Array.isArray(v) ? v : [v]);
 
-function getVal(sel, attr) {
-    const elements = findElements(sel);
+function getVal(root, sel, attr) {
+    const elements = findElements(root, sel);
     if (elements.length === 0) return null;
 
     let el = elements[0];
@@ -47,8 +48,8 @@ function getVal(sel, attr) {
     return el.value;
 }
 
-function setVal(sel, val, attr) {
-    const elements = findElements(sel);
+function setVal(root, sel, val, attr) {
+    const elements = findElements(root, sel);
     if (elements.length === 0) return;
 
     const el = elements[0];
@@ -82,8 +83,8 @@ function setElementValue(el, val, attr) {
     }    
 }
 
-function findElements(sel) {
-    const elements = document.querySelectorAll(sel);
+function findElements(root, sel) {
+    const elements = root.querySelectorAll(sel);
     if (elements.length === 0) {
         console.warn(`No elements found matching selector ${sel}`);
     }

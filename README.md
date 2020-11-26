@@ -64,6 +64,9 @@ object with the following keys:
         property or a new one. Required, string.
 3. `sel`: A CSS selector which selects an element on the page. Required, string.
 4. `attr`: The name of an attribute on the selected element. Optional, string.
+5. `root`: The root DOM node which contains the bound element. If ommitted, then
+        `document` will be the root. Optional. DOM Element.
+
 
 When `attr` is given, the value of the attribute is bound to the property.
 For example, you can bind the style attribute to a property.
@@ -78,5 +81,22 @@ When `attr` is __not__ given:
 * If the selected element is input-type element (`input`, `textarea`, or `select`), 
     the value of the element is bound.
 * Otherwise, the `innerHTML` of the element is bound.
+
+#### Using root
+The `bind()` function can be called with an optional `root` argument. For example, consider this html fragment:
+
+```html
+    <div id="container">
+        <input class="name" type="text" />
+    </div>
+```
+We can bind the `name` as follow:
+
+```js
+const obj = {};
+const root = document.getElementById('container');
+bind({obj, prop:'name', sel:'.name', root});
+```
+
 
 Look at this repo's `example/example.html` for a fully working example.
