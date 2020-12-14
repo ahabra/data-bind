@@ -4,7 +4,8 @@
 
 (function() {
         function bind({obj, prop, sel, attr, root}) {
-    validateArgs({obj, prop, sel});
+    validateArgs({prop, sel});
+    obj = obj || {};
     const oldValue = obj.hasOwnProperty(prop) ? obj[prop] : undefined;
     root = root || document;
 
@@ -21,6 +22,7 @@
         console.info(`Property '${prop}' already exists in object. Will override previous definition but retain old value of ${oldValue}.`);
         obj[prop] = oldValue;
     }
+    return obj;
 }
 
 const isCheckbox = el => el.type === 'checkbox';
@@ -96,10 +98,7 @@ function findElements(root, sel) {
     return [... elements];
 }
 
-function validateArgs({obj, prop, sel}) {
-    if (!obj) {
-        throw `'obj' argument cannot be null or undefined.`;
-    }
+function validateArgs({prop, sel}) {
     if (typeof prop !== 'string' || prop.length === 0) {
         throw `'prop' argument must be a String defining the name a property.`
     }
