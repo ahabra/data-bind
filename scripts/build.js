@@ -23,12 +23,21 @@ function uglify(script) {
     return Terser.minify(script).code;
 }
 
-const code = fs.readFileSync(projPath + '/src/data-bind.js', 'utf8');
+function getCode() {
+    const source = fs.readFileSync(projPath + '/src/data-bind.js', 'utf8');
+    const script = createBrowserScript(source);
+    const ugly = uglify(script);
 
-fs.ensureDirSync('dist');
+    return {source, script, ugly};
+}
 
-fs.writeFileSync(dist + 'data-bind-module.js', copyRight + code);
-const script = createBrowserScript(code);
-fs.writeFileSync(dist + 'data-bind-script.js', copyRight + script);
-fs.writeFileSync(dist + 'data-bind-script-min.js', copyRight + uglify(script));
+function writeCodeToDist(code) {
+    fs.ensureDirSync('dist');
+    fs.writeFileSync(dist + 'data-bind-module.js', copyRight + code.source);
+    fs.writeFileSync(dist + 'data-bind-script.js', copyRight + code.script);
+    fs.writeFileSync(dist + 'data-bind-script-min.js', copyRight + code.ugly);    
+}
+
+const code = getCode();
+writeCodeToDist(code);
 
