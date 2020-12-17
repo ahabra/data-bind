@@ -59,7 +59,8 @@ consol.log(obj.age);
 There is a single function `bind()` that you can use. It takes a single argument
 object with the following keys:
 
-1. `obj`: An existing object where a property will be bound. Required.
+1. `obj`: An existing object where a property will be bound. Optional. If missing, 
+    a new object is created and returned by the `bind()` function.
 2. `prop`: The name of the property to be bound. It can be an existing
         property or a new one. Required, string.
 3. `sel`: A CSS selector which selects an element on the page. Required, string.
@@ -67,6 +68,7 @@ object with the following keys:
 5. `root`: The root DOM node which contains the bound element. If ommitted, then
         `document` will be the root. Optional, DOM Element.
 
+The `bind()` function returns the bound object.
 
 When `attr` is given, the value of the attribute is bound to the property.
 For example, you can bind the style attribute to a property.
