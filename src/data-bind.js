@@ -1,12 +1,17 @@
-export default function bind({obj, prop, sel, attr, root}) {
-    validateArgs({prop, sel});
+/**
+ * Bind an object's property to a UI element or an attribute on a IU element
+ * @param {onChange} Call back fires only when property is changed thru API, not UI. 
+ */
+export default function bind({obj, prop, sel, attr, root, onChange}) {
+    validateArgs(prop);
     obj = obj || {};
     const oldValue = obj.hasOwnProperty(prop) ? obj[prop] : undefined;
     root = root || document;
+    const objNotBound = {};
 
     const descriptor = {
-        get: () => getVal(root, sel, attr),
-        set: v => setVal(root, sel, v, attr),
+        get: () => getValue({prop, sel, attr, root, objNotBound}),
+        set: value => setValue({prop, value, root, sel, attr, objNotBound, onChange}),
         configurable: true,
         enumerable: true
     };
@@ -20,13 +25,38 @@ export default function bind({obj, prop, sel, attr, root}) {
     return obj;
 }
 
+
 const isCheckbox = el => el.type === 'checkbox';
 const isRadio = el => el.type === 'radio';
 const isSelect = el => el.tagName.toLowerCase() === 'select';
 const isInput = el => 'value' in el;
 const toSet = v => new Set( Array.isArray(v) ? v : [v]);
 
-function getVal(root, sel, attr) {
+function setValue({prop, value, root, sel, attr, objNotBound, onChange}) {
+    fireChange({prop, value, root, sel, attr, objNotBound, onChange})
+
+    if (sel) {
+        setDomVal(root, sel, value, attr)
+        return
+    }
+    objNotBound[prop] = value
+}
+
+function fireChange({prop, value, root, sel, attr, objNotBound, onChange}) {
+    if (!onChange) return
+
+    const oldValue = getValue({prop, root, sel, attr, objNotBound})
+    if (oldValue === value) return
+
+    onChange(oldValue, value)
+}
+
+function getValue({prop, root, sel, attr, objNotBound}) {
+    if (sel) return getDomVal(root, sel, attr)
+    return objNotBound[prop]
+}
+
+function getDomVal(root, sel, attr) {
     const elements = findElements(root, sel);
     if (elements.length === 0) return null;
 
@@ -50,7 +80,7 @@ function getVal(root, sel, attr) {
     return el.value;
 }
 
-function setVal(root, sel, val, attr) {
+function setDomVal(root, sel, val, attr) {
     const elements = findElements(root, sel);
     if (elements.length === 0) return;
 
@@ -93,15 +123,11 @@ function findElements(root, sel) {
     return [... elements];
 }
 
-function validateArgs({prop, sel}) {
+function validateArgs(prop) {
     if (typeof prop !== 'string' || prop.length === 0) {
         throw `'prop' argument must be a String defining the name a property.`
     }
-    if (typeof sel !== 'string' || sel.length === 0) {
-        throw `'sel' argument must be a String defining a selector.`
-    }
 }
-
 
 
 /*

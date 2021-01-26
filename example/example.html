@@ -18,7 +18,7 @@
         <tr class="table-title">
           <th>Bind to ...</th>
           <th>Bound Element</th>
-          <th>Examples to Try</th>
+          <th>Examples to Try at Console</th>
         </tr>
       </thead>
 
@@ -126,6 +126,30 @@
           </td>
           <th>obj.pets = 'dog, cat'</th>
         </tr>
+
+        <tr class="odd">
+          <td class="bindto"><code>onChange()</code> unbounded property</td>
+          <td class="element">
+            <div class="title">Square Value</div>
+            <div>
+              <span class="changeUnbounded">?</span>
+            </div>
+          </td>
+          <th>obj.squareMe = 2</th>
+        </tr>
+
+        <tr class="even">
+          <td class="bindto"><code>onChange()</code> bounded property</td>
+          <td class="element">
+            <div class="title">Twice Value</div>
+            <div>
+              <input id="twice" type="text" />
+              <span class="changeBounded">?</span>
+            </div>
+          </td>
+          <th>obj.twiceMe = 3</th>
+        </tr>
+
       </tbody>
     </table>
   
@@ -140,6 +164,14 @@ bind({obj, prop:'countries', sel:'#countries'});
 bind({obj, prop:'language', sel:'[name="language"]'});
 bind({obj, prop:'hobbies', sel:'.hobbies'});
 bind({obj, prop:'pets', sel:'#pets', root: document.getElementById('root1')});
+
+bind({obj, prop:'squareMe', onChange: (oldv, newv)=> {
+  document.querySelector('.changeUnbounded').innerText = newv * newv
+}})
+
+bind({obj, prop:'twiceMe', sel:'#twice', onChange: (oldv, newv)=> {
+  document.querySelector('.changeBounded').innerText = newv * 2
+}})
 
 </script>
 

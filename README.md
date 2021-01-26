@@ -63,10 +63,14 @@ object with the following keys:
     a new object is created and returned by the `bind()` function.
 2. `prop`: The name of the property to be bound. It can be an existing
         property or a new one. Required, string.
-3. `sel`: A CSS selector which selects an element on the page. Required, string.
+3. `sel`: A CSS selector which selects an element on the page. Optional, string. If
+        ommitted, then an unbounded property will be created.
 4. `attr`: The name of an attribute on the selected element. Optional, string.
 5. `root`: The root DOM node which contains the bound element. If ommitted, then
         `document` will be the root. Optional, DOM Element.
+6. `onChange`: A callback which is invoked when the value of a property is changed through
+        an API invocation (_and not through UI interaction_). The callback function takes two 
+        arguments `(oldValue, newValue)`.
 
 The `bind()` function returns the bound object.
 
