@@ -1,7 +1,8 @@
 {
-    "name": "@ahabra/data-bind",
+    "name": "@techexp/data-bind",
     "version": "0.6.0",
     "description": "Easy to use, two-way data binding library, light-weight, and with no dependencies.",
+    "author": "Abdul Habra",
     "license": "Apache",
     "repository": "ahabra/data-bind",
     "main": "dist/data-bind-module.js",
