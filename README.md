@@ -17,7 +17,7 @@ you include in your html file.
 ### Install as NPM ES6 Module
 If you plan to use this package as an NPM module, install it:
 
-    npm install @ahabra/data-bind
+    npm install @techexp/data-bind
 
 
 ### Install as a Script
@@ -34,7 +34,7 @@ and use directly.
 ## Usage
 If you installed as an NPM module:
 ```js
-import bind from '@ahabra/data-bind'
+import bind from '@techexp/data-bind'
 ```
 
 If you installed it as Script, the bind function is available at `window.bind()`
