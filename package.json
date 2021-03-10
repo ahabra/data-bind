@@ -1,6 +1,6 @@
 {
     "name": "@techexp/data-bind",
-    "version": "0.6.3",
+    "version": "0.6.4",
     "description": "Easy to use, two-way data binding library, light-weight, and with no dependencies.",
     "author": "Abdul Habra",
     "license": "Apache",
