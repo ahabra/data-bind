@@ -80,6 +80,7 @@ function getDomVal(root, sel, attr) {
 
     if (isRadio(el)) {
         el = elements.filter(isRadio).find(e => e.checked);
+        if (!el) return undefined
     }
     return el.value;
 }
