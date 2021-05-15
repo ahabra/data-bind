@@ -22,7 +22,7 @@
         "build": "node scripts/build.js"
     },
     "devDependencies": {
-        "fs-extra": "^9.1.0",
-        "terser": "^5.6.1"
+        "fs-extra": "^10.0.0",
+        "terser": "^5.7.0"
     }
 }
