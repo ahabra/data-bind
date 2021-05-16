@@ -7,26 +7,36 @@
  * Bind an object's property to a UI element or an attribute on a IU element
  * @param {onChange} Call back fires only when property is changed thru API, not UI. 
  */
-function bind({obj, prop, sel, attr, root, onChange}) {
-    validateArgs(prop);
-    obj = obj || {};
-    const oldValue = obj.hasOwnProperty(prop) ? obj[prop] : undefined;
-    root = root || document;
-    const objNotBound = {};
+function bind({obj = {}, prop, sel, attr, root = document, getter, setter, onChange}) {
+    validateArgs(prop)
+    checkAndGetInitialValue(obj, prop)
+    const objNotBound = {}
 
+    if (!getter) {
+        getter = () => getValue({prop, sel, attr, root, objNotBound})
+    }
+    if (!setter) {
+        setter = (_, value) => setValue({prop, value, root, sel, attr, objNotBound})
+    }
+    return bindProp({obj, prop, getter, setter, onChange})
+}
+
+function bindProp({obj, prop, getter, setter, onChange}) {
     const descriptor = {
-        get: () => getValue({prop, sel, attr, root, objNotBound}),
-        set: value => setValue({prop, value, root, sel, attr, objNotBound, onChange}),
+        get: () => getter(prop),
+        set: value => {
+            if (onChange) {
+                const oldValue = getter(prop)
+                if (oldValue !== value) {
+                    onChange(oldValue, value)
+                }
+            }
+            setter(prop, value)
+        },
         configurable: true,
         enumerable: true
-    };
-    
-    Object.defineProperty(obj, prop, descriptor);
-
-    if (oldValue !== undefined) {
-        console.info(`Property '${prop}' already exists in object. Will override previous definition but retain old value of ${oldValue}.`);
-        obj[prop] = oldValue;
     }
+    Object.defineProperty(obj, prop, descriptor);
     return obj;
 }
 
@@ -37,28 +47,26 @@ const isSelect = el => el.tagName.toLowerCase() === 'select';
 const isInput = el => 'value' in el;
 const toSet = v => new Set( Array.isArray(v) ? v : [v]);
 
-function setValue({prop, value, root, sel, attr, objNotBound, onChange}) {
-    fireChange({prop, value, root, sel, attr, objNotBound, onChange})
-
-    if (sel) {
-        setDomVal(root, sel, value, attr)
-        return
+function checkAndGetInitialValue(obj, prop) {
+    const oldValue = obj[prop]
+    if (oldValue !== undefined) {
+        console.info(`Property '${prop}' already exists in object. Will override previous definition but retain old value of ${oldValue}.`)
+        obj[prop] = oldValue
     }
-    objNotBound[prop] = value
-}
-
-function fireChange({prop, value, root, sel, attr, objNotBound, onChange}) {
-    if (!onChange) return
-
-    const oldValue = getValue({prop, root, sel, attr, objNotBound})
-    if (oldValue === value) return
-
-    onChange(oldValue, value)
+    return oldValue
 }
 
 function getValue({prop, root, sel, attr, objNotBound}) {
     if (sel) return getDomVal(root, sel, attr)
     return objNotBound[prop]
+}
+
+function setValue({prop, value, root, sel, attr, objNotBound}) {
+    if (sel) {
+        setDomVal(root, sel, value, attr)
+        return
+    }
+    objNotBound[prop] = value
 }
 
 function getDomVal(root, sel, attr) {
