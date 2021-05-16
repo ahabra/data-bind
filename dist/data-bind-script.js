@@ -9,7 +9,7 @@
  */
 function bind({obj = {}, prop, sel, attr, root = document, getter, setter, onChange}) {
     validateArgs(prop)
-    checkAndGetInitialValue(obj, prop)
+    checkInitialValue(obj, prop)
     const objNotBound = {}
 
     if (!getter) {
@@ -47,7 +47,7 @@ const isSelect = el => el.tagName.toLowerCase() === 'select';
 const isInput = el => 'value' in el;
 const toSet = v => new Set( Array.isArray(v) ? v : [v]);
 
-function checkAndGetInitialValue(obj, prop) {
+function checkInitialValue(obj, prop) {
     const oldValue = obj[prop]
     if (oldValue !== undefined) {
         console.info(`Property '${prop}' already exists in object. Will override previous definition but retain old value of ${oldValue}.`)

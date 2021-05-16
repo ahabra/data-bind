@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const Terser = require('terser');
+const {minify} = require('terser');
 
 const projPath = path.dirname(__dirname);
 const dist = projPath + '/dist/';
@@ -19,25 +19,23 @@ function createBrowserScript(code) {
     })();`;
 }
 
-function uglify(script) {
-    return Terser.minify(script).code;
-}
-
-function getCode() {
+async function getCode() {
     const source = fs.readFileSync(projPath + '/src/data-bind.js', 'utf8');
     const script = createBrowserScript(source);
-    const ugly = uglify(script);
-
-    return {source, script, ugly};
+    const ugly = await minify(script);
+    return {source, script, ugly: ugly.code};
 }
 
 function writeCodeToDist(code) {
     fs.ensureDirSync('dist');
     fs.writeFileSync(dist + 'data-bind-module.js', copyRight + code.source);
     fs.writeFileSync(dist + 'data-bind-script.js', copyRight + code.script);
-    fs.writeFileSync(dist + 'data-bind-script-min.js', copyRight + code.ugly);    
+    fs.writeFileSync(dist + 'data-bind-script-min.js', copyRight + code.ugly);
 }
 
-const code = getCode();
-writeCodeToDist(code);
+async function generateAllCode() {
+    const code = await getCode();
+    writeCodeToDist(code);
+}
 
+generateAllCode()
