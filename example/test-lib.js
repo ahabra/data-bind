@@ -9,7 +9,7 @@
 
 	function isEqual(actual, expected, description) {
 		if (actual !== expected) {
-			throw `${description} is ${actual}, but expected to be ${expected}`
+			throw `${description} is ${actual}, but should be ${expected}`
 		}
 	}
 
@@ -28,7 +28,7 @@
 
 	function addError(testName, errorMsg) {
 		const errorList = document.getElementById('errorList')
-		createElement(`<li>${testName}: ${errorMsg}</li>`, errorList)
+		createElement(`<li><b>${testName}</b>: ${errorMsg}</li>`, errorList)
 	}
 
 	function getContent() {
@@ -37,7 +37,7 @@
 
 	window.Tester = {
 		it, isEqual,
-		createInput
+		createInput, createElement
 	}
 })()
 
