@@ -2,7 +2,8 @@
  * Bind an object's property to a UI element or an attribute on a IU element
  * @param {onChange} Call back fires only when property is changed thru API, not UI. 
  */
-export default function bind({obj = {}, prop, sel, attr, root = document, getter, setter, onChange}) {
+export default function bind({obj = {}, prop, sel, attr, root = document,
+                                 getter, setter, onChange}) {
     validateArgs(prop)
     checkInitialValue(obj, prop)
     const objNotBound = {}
@@ -11,14 +12,14 @@ export default function bind({obj = {}, prop, sel, attr, root = document, getter
         getter = () => getValue({prop, sel, attr, root, objNotBound})
     }
     if (!setter) {
-        setter = (_, value) => setValue({prop, value, root, sel, attr, objNotBound})
+        setter = (value) => setValue({prop, value, root, sel, attr, objNotBound})
     }
     return bindProp({obj, prop, getter, setter, onChange})
 }
 
 function bindProp({obj, prop, getter, setter, onChange}) {
     const descriptor = {
-        get: () => getter(prop),
+        get: () => getter(),
         set: value => {
             if (onChange) {
                 const oldValue = getter(prop)
@@ -26,7 +27,7 @@ function bindProp({obj, prop, getter, setter, onChange}) {
                     onChange(oldValue, value)
                 }
             }
-            setter(prop, value)
+            setter(value)
         },
         configurable: true,
         enumerable: true

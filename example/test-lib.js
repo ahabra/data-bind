@@ -2,6 +2,7 @@
 	function it(description, test) {
 		try {
 			test()
+			addSuccess(description)
 		} catch(er) {
 			addError(description, er)
 		}
@@ -27,8 +28,16 @@
 	}
 
 	function addError(testName, errorMsg) {
-		const errorList = document.getElementById('errorList')
-		createElement(`<li><b>${testName}</b>: ${errorMsg}</li>`, errorList)
+		addReportItem(`<li class="error"><b>${testName}</b>: ${errorMsg}</li>`)
+	}
+
+	function addSuccess(testName) {
+		addReportItem(`<li class="success">${testName}</li>`)
+	}
+
+	function addReportItem(msg) {
+		const reportList = document.getElementById('reportList')
+		createElement(msg, reportList)
 	}
 
 	function getContent() {

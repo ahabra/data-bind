@@ -68,6 +68,10 @@ object with the following keys:
 4. `attr`: The name of an attribute on the selected element. Optional, string.
 5. `root`: The root DOM node which contains the bound element. If ommitted, then
         `document` will be the root. Optional, DOM Element.
+6. `getter`: An optional function that returns the value of the bound property. This can be
+   used instead of the selector `sel`. The function takes no arguments and returns a value.
+7. `setter`: An optional function that takes a value argument and assigns it to the bound 
+   property. This can be used instead of the selector `sel`. 
 6. `onChange`: A callback which is invoked when the value of a property is changed through
         an API invocation (_and not through UI interaction_). The callback function takes two 
         arguments `(oldValue, newValue)`.
