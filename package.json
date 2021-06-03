@@ -19,10 +19,13 @@
     },
     "scripts": {
         "clean": "rm -rf dist",
-        "build": "node scripts/build.js"
+        "build": "node scripts/build.js",
+        "deps:list": "ncu",
+        "deps:up": "ncu -u"
     },
     "devDependencies": {
         "fs-extra": "^10.0.0",
+        "npm-check-updates": "^11.6.0",
         "terser": "^5.7.0"
     }
 }
