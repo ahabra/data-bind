@@ -12,6 +12,19 @@ Tester.it('binds an element to an input value', ()=> {
 	Tester.isEqual(obj.age, '42', 'age')
 })
 
+Tester.it('binds an element to an input value attribute', ()=> {
+	const id = 't1-1'
+	const el = Tester.createInput(id)
+
+	const obj = bind({prop:'age', sel:`#${id}`, attr:'value'})
+	obj.age = 11
+	Tester.isEqual(el.getAttribute('value'), '11', 'age')
+
+	el.setAttribute('value', '42')
+	Tester.isEqual(obj.age, '42', 'age')
+})
+
+
 Tester.it('binds an element to content', ()=> {
 	const id = 't2'
 	const el = Tester.createElement(`<div id="${id}"></div>`)

@@ -39,7 +39,8 @@ function bindProp({obj, prop, getter, setter, onChange}) {
 
 const isCheckbox = el => el.type === 'checkbox';
 const isRadio = el => el.type === 'radio';
-const isSelect = el => el.tagName.toLowerCase() === 'select';
+const isSelect = el => el.nodeName.toLowerCase() === 'select';
+const isInputField = el => el.nodeName.toLowerCase() === 'input-field'
 const isInput = el => 'value' in el;
 const toSet = v => new Set( Array.isArray(v) ? v : [v]);
 
@@ -87,6 +88,11 @@ function getDomVal(root, sel, attr) {
         el = elements.filter(isRadio).find(e => e.checked);
         if (!el) return undefined
     }
+
+    if (isInputField(el)) {
+        return el.getAttribute('value')
+    }
+
     return el.value;
 }
 
@@ -120,6 +126,8 @@ function setElementValue(el, val, attr) {
         el.setAttribute(attr, val);
     } else if (isInput(el)) {
         el.value = val;
+    } else if (isInputField(el)) {
+        el.setAttribute('value', val)
     } else {
         el.innerHTML = val;
     }    

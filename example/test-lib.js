@@ -8,6 +8,10 @@
 		}
 	}
 
+	function skip(description) {
+		addSkip(description)
+	}
+
 	function isEqual(actual, expected, description) {
 		if (actual !== expected) {
 			throw `${description} is ${actual}, but should be ${expected}`
@@ -35,6 +39,10 @@
 		addReportItem(`<li class="success">${testName}</li>`)
 	}
 
+	function addSkip(testName) {
+		addReportItem(`<li class="skip"><b>Skipped</b>: ${testName}</li>`)
+	}
+
 	function addReportItem(msg) {
 		const reportList = document.getElementById('reportList')
 		createElement(msg, reportList)
@@ -45,7 +53,7 @@
 	}
 
 	window.Tester = {
-		it, isEqual,
+		it, skip, isEqual,
 		createInput, createElement
 	}
 })()
