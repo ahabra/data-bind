@@ -24,8 +24,8 @@
         "deps:up": "ncu -u"
     },
     "devDependencies": {
-        "fs-extra": "^10.0.0",
-        "npm-check-updates": "^11.6.0",
-        "terser": "^5.7.0"
+        "fs-extra": "^10.1.0",
+        "npm-check-updates": "^16.3.18",
+        "terser": "^5.15.1"
     }
 }
